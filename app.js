@@ -21,8 +21,7 @@ import config from "./src/config/config.js";
 
 
 const app = express()
-const URI = "mongodb+srv://ingjesussantiago:1BJqXKhkrqa9kOEM@cluster0.nwy2csb.mongodb.net/8Entregabk?retryWrites=true&w=majority"
-// const fileStorage = FileStore(session)
+const URI = config.MONGO_URL
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser("secreto"))
@@ -31,7 +30,7 @@ app.use(session({
 
     store:MongoStore.create({
 
-            mongoUrl:URI,
+            mongoUrl:config.MONGO_URL,
             mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
             ttl: 10*60
     }),
@@ -84,6 +83,7 @@ const httpServer = app.listen(PORT, () => {
 })
 
 console.log(process.env.PORT);
+console.log(process.env.MONGO_URL)
 
 const socketServer = new Server(httpServer)
 
@@ -94,7 +94,6 @@ socketServer.on("connection", async (Socket) => {
     })
 
 })
-
 
 
 

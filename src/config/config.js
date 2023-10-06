@@ -9,8 +9,8 @@ dotenv.config({
 })      
 
 export default {
-    PORT: process.env.PORT
-    // mongoUrl: process.env.URL_MONGO,
+    PORT: process.env.PORT,
+    MONGO_URL: process.env.MONGO_URL,
     // adminName: process.env.ADMIN_NAME,
     // adminPassword: process.env.ADMIN_PASSWORD
 }

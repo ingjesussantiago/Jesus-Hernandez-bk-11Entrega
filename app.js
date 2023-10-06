@@ -17,7 +17,7 @@ import MongoStore from "connect-mongo"
 import mongoose from "mongoose"
 import passport from "passport"
 import initializePassport from "./src/config/passport.config.js"
-
+import config from "./src/config/config.js";
 
 
 const app = express()
@@ -74,16 +74,16 @@ app.use("/github",githubviews )
 //     res.json({message:"cookies",cookies,signedCookies})
 // })
 
-
 // app.get("/borrarcoki",(req,res)=>{
 //    res.clearCookie("cookie2").send("borrado")
 // })
-const PORT = 8080
+const PORT = config.PORT
 
 const httpServer = app.listen(PORT, () => {
-    console.log("escuchando puerto con htpp y socket io")
+    console.log(`escuchando puerto con htpp ${PORT} y socket io `)
 })
 
+console.log(process.env.PORT);
 
 const socketServer = new Server(httpServer)
 
@@ -94,6 +94,7 @@ socketServer.on("connection", async (Socket) => {
     })
 
 })
+
 
 
 
